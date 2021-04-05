@@ -1,13 +1,36 @@
    class Car {
-    constructor(brand, model, yearOfManufacturing, maxSpeed, maxFuelVolume, fuelConsumption) {
-      this.brand = brand;
-      this.model = model;
-      this.yearOfManufacturing = yearOfManufacturing;
-      this.maxSpeed = maxSpeed;
-      this.maxFuelVolume = maxFuelVolume;
-      this.fuelConsumption = fuelConsumption;
-    }
- 
+      constructor(brand, model, yearOfManufacturing, maxSpeed, maxFuelVolume, fuelConsumption) {
+
+         if (typeof brand !== 'string' || brand.length > 50 || brand.length < 1) {
+            throw new Error('brand value is not string, or brand length > 50, or < 1 ')
+         }
+         this.#brand = brand
+   
+         if (typeof model !== 'string' || model.length > 50 || model.length < 1) {
+            throw new Error('model value is not string, or model length > 50, or < 1 ')
+         }
+         this.#model = model
+   
+         if (typeof yearOfManufacturing !== 'number' || yearOfManufacturing < 1900 || yearOfManufacturing > 2021) {
+            throw new Error('year value is not number, or > 2021, or < 1900')
+         }
+         this.#yearOfManufacturing = yearOfManufacturing
+   
+         if (typeof maxSpeed !== 'number' || maxSpeed < 100 || maxSpeed > 300) {
+            throw new Error('maxSpeed value is not number, or < 100, or > 300')
+         }
+         this.#maxSpeed = maxSpeed
+   
+         if (maxFuelVolume < 5 || maxFuelVolume > 20) {
+            throw new Error('maxFuelVolume value is not number, or < 5, or > 20')
+         }
+         this.#maxFuelVolume = maxFuelVolume
+   
+         if (typeof fuelConsumption !== 'number') {
+            throw new Error('fuelConsumption must be a number')
+         }
+         this.#fuelConsumption = fuelConsumption
+      }
     #brand = null;
     get brand() {
        return this.#brand
